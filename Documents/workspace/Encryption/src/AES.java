@@ -29,7 +29,7 @@ public class AES {
 //        System.out.println(encryptedString);
 //        System.out.println(decryptedString);
         
-        test2();
+        test3();
     }
     
     public void test() {
@@ -74,11 +74,36 @@ public class AES {
     	System.out.println(Base64.getEncoder().encodeToString(originalKey.getEncoded()));
     }
     
+    public static void test3() throws Exception {
+    	Scanner in = new Scanner(System.in);
+    	System.out.println("Enter AES key");
+    	System.out.print(">");
+    	String encodedKey = in.nextLine();
+    	byte[] decodedKey = Base64.getDecoder().decode(encodedKey);
+    	SecretKey originalKey = new SecretKeySpec(decodedKey,0,decodedKey.length,"AES");
+    	System.out.println("Enter text to encrypt");
+    	System.out.print(">");
+    	String originalString = in.nextLine();
+    	String encryptedString = AES.decrypt(originalString, encodedKey);
+    	System.out.println("Encrypted text: "+encryptedString);
+    }
+    
     public static SecretKey createKey() throws Exception {
     	KeyGenerator generator = KeyGenerator.getInstance("AES");
     	generator.init(128);
     	SecretKey secKey = generator.generateKey();
     	return secKey;
+    }
+    
+    public static String keyToString(SecretKey secKey) {
+    	String encodedKey = Base64.getEncoder().encodeToString(secKey.getEncoded());
+    	return encodedKey;
+    }
+    
+    public static SecretKey stringToKey(String secKey) {
+    	//TODO
+    	SecretKey x = null;
+    	return x;
     }
  
     public static void setKey(String myKey) 
