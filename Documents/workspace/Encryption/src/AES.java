@@ -6,17 +6,20 @@ import java.util.Base64;
 import java.util.Scanner;
 
 import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
  
 public class AES {
  
     private static SecretKeySpec secretKey;
     private static byte[] key;
+    Scanner in = new Scanner(System.in);
     
-    public static void main(String[] args) 
+    public static void main(String[] args) throws Exception 
     {
         final String secretKey = "krustykrab";
-        Scanner in = new Scanner(System.in);
+        
          
 //        String originalString = "howtodoinjava.com";
 //        String encryptedString = AES.encrypt(originalString, secretKey) ;
@@ -25,7 +28,12 @@ public class AES {
 //        System.out.println(originalString);
 //        System.out.println(encryptedString);
 //        System.out.println(decryptedString);
-        while(1==1) {
+        
+        test2();
+    }
+    
+    public void test() {
+    	while(1==1) {
         	System.out.println("Do you want to encrypt or decrypt");
         	System.out.print(">");
         	String x = in.nextLine();
@@ -51,7 +59,26 @@ public class AES {
         		return;
         	}
         }
-        
+    }
+    
+    public static void test2() throws Exception {
+    	SecretKey test = createKey();
+    	System.out.println(test.getAlgorithm());
+    	//SecretKey to String
+    	String encodedKey = Base64.getEncoder().encodeToString(test.getEncoded());
+    	System.out.println(encodedKey);
+    	//String to SecretKey
+    	byte[] decodedKey = Base64.getDecoder().decode(encodedKey);
+    	SecretKey originalKey = new SecretKeySpec(decodedKey,0,decodedKey.length,"AES");
+    	System.out.println(originalKey.getAlgorithm());
+    	System.out.println(Base64.getEncoder().encodeToString(originalKey.getEncoded()));
+    }
+    
+    public static SecretKey createKey() throws Exception {
+    	KeyGenerator generator = KeyGenerator.getInstance("AES");
+    	generator.init(128);
+    	SecretKey secKey = generator.generateKey();
+    	return secKey;
     }
  
     public static void setKey(String myKey) 
