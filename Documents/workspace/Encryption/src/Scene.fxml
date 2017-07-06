@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+   <children>
+      <MenuBar prefHeight="0.0" prefWidth="600.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane layoutY="29.0" prefHeight="330.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Text Encryption">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="21.0" layoutY="44.0" />
+                        <Label layoutX="23.0" layoutY="14.0" prefHeight="29.0" prefWidth="164.0" text="AES Secret Key" />
+                        <Button layoutX="21.0" layoutY="81.0" mnemonicParsing="false" text="encrypt" />
+                        <Button layoutX="105.0" layoutY="81.0" mnemonicParsing="false" text="decrypt" />
+                        <TextArea layoutX="21.0" layoutY="152.0" prefHeight="131.0" prefWidth="256.0" />
+                        <TextArea layoutX="322.0" layoutY="152.0" prefHeight="131.0" prefWidth="256.0" />
+                        <Label layoutX="115.0" layoutY="125.0" text="Plain Text" />
+                        <Label layoutX="420.0" layoutY="125.0" text="Cipher Text" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="File Encryption">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Label layoutX="7.0" layoutY="372.0" prefHeight="29.0" prefWidth="308.0" text="..." />
+   </children>
+</AnchorPane>
