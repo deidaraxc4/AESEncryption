@@ -11,8 +11,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneController">
    <children>
       <MenuBar prefHeight="0.0" prefWidth="600.0">
         <menus>
@@ -39,14 +38,16 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField layoutX="21.0" layoutY="44.0" />
+                        <TextField fx:id="secKeyLabel" layoutX="21.0" layoutY="44.0" />
                         <Label layoutX="23.0" layoutY="14.0" prefHeight="29.0" prefWidth="164.0" text="AES Secret Key" />
-                        <Button layoutX="21.0" layoutY="81.0" mnemonicParsing="false" text="encrypt" />
-                        <Button layoutX="105.0" layoutY="81.0" mnemonicParsing="false" text="decrypt" />
-                        <TextArea layoutX="21.0" layoutY="152.0" prefHeight="131.0" prefWidth="256.0" />
-                        <TextArea layoutX="322.0" layoutY="152.0" prefHeight="131.0" prefWidth="256.0" />
+                        <Button fx:id="encryptBtn" layoutX="21.0" layoutY="81.0" mnemonicParsing="false" text="encrypt" />
+                        <Button fx:id="decryptBtn" layoutX="105.0" layoutY="81.0" mnemonicParsing="false" text="decrypt" />
+                        <TextArea fx:id="plainField" layoutX="21.0" layoutY="152.0" prefHeight="131.0" prefWidth="256.0" />
+                        <TextArea fx:id="cipherField" layoutX="322.0" layoutY="152.0" prefHeight="131.0" prefWidth="256.0" />
                         <Label layoutX="115.0" layoutY="125.0" text="Plain Text" />
                         <Label layoutX="420.0" layoutY="125.0" text="Cipher Text" />
+                        <Button fx:id="keyGenBtn" layoutX="322.0" layoutY="44.0" mnemonicParsing="false" text="Generate Key" />
+                        <Label fx:id="keyGenLabel" layoutX="433.0" layoutY="49.0" text=".." />
                      </children>
                   </AnchorPane>
             </content>
@@ -58,6 +59,6 @@
           </Tab>
         </tabs>
       </TabPane>
-      <Label layoutX="7.0" layoutY="372.0" prefHeight="29.0" prefWidth="308.0" text="..." />
+      <Label fx:id="statusLabel" layoutX="7.0" layoutY="372.0" prefHeight="29.0" prefWidth="308.0" text="..." />
    </children>
 </AnchorPane>
