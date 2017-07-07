@@ -50,6 +50,9 @@ public class SceneController implements Initializable{
 		if(!secKeyLabel.getText().equals("")) {
 			String encryptedText = cipherField.getText();
 			String secret = secKeyLabel.getText();
+			if(AES.decrypt(encryptedText, secret)==null) {
+				statusLabel.setText("Error when decrypting");
+			}
 			String decryptedText = AES.decrypt(encryptedText, secret);
 			plainField.setText(decryptedText);
 			statusLabel.setText("Succesfully decrypted text");
