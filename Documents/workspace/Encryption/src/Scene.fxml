@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -54,7 +55,22 @@
           </Tab>
           <Tab text="File Encryption">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ChoiceBox layoutX="32.0" layoutY="14.0" prefWidth="150.0" />
+                        <TextField layoutX="66.0" layoutY="80.0" />
+                        <Label layoutX="32.0" layoutY="85.0" text="Path" />
+                        <TextField layoutX="66.0" layoutY="144.0" />
+                        <Label layoutX="32.0" layoutY="149.0" text="Path" />
+                        <Label layoutX="29.0" layoutY="54.0" text="1. Select file to encrypt" />
+                        <Label layoutX="29.0" layoutY="118.0" text="2. Select directory for encrypted files" />
+                        <Label layoutX="29.0" layoutY="188.0" text="3. Enter password to use" />
+                        <Label layoutX="60.0" layoutY="214.0" text="Enter password: " />
+                        <Label layoutX="60.0" layoutY="248.0" text="Re-enter password: " />
+                        <TextField layoutX="207.0" layoutY="209.0" />
+                        <TextField layoutX="207.0" layoutY="243.0" />
+                        <Button layoutX="496.0" layoutY="257.0" mnemonicParsing="false" text="Encrypt" />
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>
