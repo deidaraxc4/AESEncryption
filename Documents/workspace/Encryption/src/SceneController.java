@@ -108,10 +108,22 @@ public class SceneController implements Initializable{
 				AES.encrypt(passField.getText(), inputFile, outputFile);
 				statusLabel.setText("Encrypted succesfully");
 			} else if(!passField.getText().equals(repassField.getText())) {
-				
+				statusLabel.setText("Passwords do not match!");
 			}
 		} else if(modeSelection.equals("Decrypt")) {
-			
+			inputFile = new File(fileField.getText());
+			selectedDirectory = new File(directoryField.getText());
+			String [] parts = inputFile.getName().split("\\.encrypte");
+			String decrypted = parts [0];
+			outputFile = new File(decrypted);
+			//Check if password match
+			if(passField.getText().equals(repassField.getText())) {
+				isEqual = true;
+				AES.decrypt(passField.getText(), inputFile, outputFile);
+				statusLabel.setText("Decrypted succesfully");
+			} else if(!passField.getText().equals(repassField.getText())) {
+				statusLabel.setText("Passwords do not match!");
+			}
 		}
 	}
 	
