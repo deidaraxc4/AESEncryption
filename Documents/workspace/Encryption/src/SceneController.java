@@ -1,12 +1,23 @@
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.InputMethodEvent;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.Label;
@@ -29,8 +40,26 @@ public class SceneController implements Initializable{
 	@FXML
 	private TextField keyGenField;
 	@FXML
-	private Label statusLabel;
-
+	private Label statusLabel, firstStep, secondStep;
+	@FXML
+	private ChoiceBox<String> choiceBox;
+	@FXML
+	private TextField fileField;
+	@FXML
+	private TextField directoryField;
+	@FXML
+	private TextField passField;
+	@FXML
+	private TextField repassField;
+	@FXML
+	private Button doBtn, dirBrowse, fileBrowse;
+	
+	FileChooser fileChooser = new FileChooser();
+	DirectoryChooser directoryChooser = new DirectoryChooser();
+	String modeSelection = "Encrypt";
+	File inputFile, outputFile, selectedDirectory;
+	Boolean isEqual = false;
+	
 	// Event Listener on Button[#encryptBtn].onAction
 	@FXML
 	public void encryptText(ActionEvent event) {
@@ -66,9 +95,63 @@ public class SceneController implements Initializable{
 		keyGenField.setText(AES.keyToString(AES.createKey()));
 		statusLabel.setText("Successfully generated AES Key");
 	}
+	
+	@FXML
+	public void actionFile(ActionEvent event) throws Exception {
+		if(modeSelection.equals("Encrypt")) {
+			inputFile = new File(fileField.getText());
+			selectedDirectory = new File(directoryField.getText());
+			outputFile = new File(inputFile.getName()+".encrypted");
+			//Check if password match
+			if(passField.getText().equals(repassField.getText())) {
+				isEqual = true;
+				AES.encrypt(passField.getText(), inputFile, outputFile);
+				statusLabel.setText("Encrypted succesfully");
+			} else if(!passField.getText().equals(repassField.getText())) {
+				
+			}
+		} else if(modeSelection.equals("Decrypt")) {
+			
+		}
+	}
+	
+	@FXML
+	public void directoryOpen(ActionEvent event) throws Exception {
+		Node source = (Node) event.getSource();
+	    Window theStage = source.getScene().getWindow();
+	    directoryChooser.setTitle("Choose location to "+modeSelection);
+	    selectedDirectory = directoryChooser.showDialog(theStage);
+	    directoryField.setText(selectedDirectory.getAbsolutePath());
+	}
+	
+	@FXML
+	public void fileOpen(ActionEvent event) throws Exception {
+		Node source = (Node) event.getSource();
+	    Window theStage = source.getScene().getWindow();
+	    fileChooser.setTitle("Choose file to "+modeSelection);
+	    inputFile = fileChooser.showOpenDialog(theStage);
+	    fileField.setText(inputFile.getAbsolutePath());
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		keyGenField.setEditable(false);
+		ObservableList obList = FXCollections.observableArrayList("Encrypt","Decrypt");
+		choiceBox.setItems(obList);
+		choiceBox.getSelectionModel().selectFirst();
+		
+		choiceBox.valueProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				modeSelection = choiceBox.getValue();
+				firstStep.setText("Select file to "+modeSelection);
+				secondStep.setText("Select directory for "+modeSelection+"ed file");
+				doBtn.setText(modeSelection);
+			}
+			
+		});
+		
+		
 	}
 }

@@ -57,19 +57,21 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ChoiceBox layoutX="32.0" layoutY="14.0" prefWidth="150.0" />
-                        <TextField layoutX="66.0" layoutY="80.0" />
+                        <ChoiceBox fx:id="choiceBox" layoutX="32.0" layoutY="14.0" prefWidth="150.0" />
+                        <TextField fx:id="fileField" layoutX="66.0" layoutY="80.0" />
                         <Label layoutX="32.0" layoutY="85.0" text="Path" />
-                        <TextField layoutX="66.0" layoutY="144.0" />
+                        <TextField fx:id="directoryField" layoutX="66.0" layoutY="144.0" />
                         <Label layoutX="32.0" layoutY="149.0" text="Path" />
-                        <Label layoutX="29.0" layoutY="54.0" text="1. Select file to encrypt" />
-                        <Label layoutX="29.0" layoutY="118.0" text="2. Select directory for encrypted files" />
+                        <Label fx:id="firstStep" layoutX="29.0" layoutY="54.0" text="1. Select file to encrypt" />
+                        <Label fx:id="secondStep" layoutX="29.0" layoutY="118.0" text="2. Select directory for encrypted file" />
                         <Label layoutX="29.0" layoutY="188.0" text="3. Enter password to use" />
                         <Label layoutX="60.0" layoutY="214.0" text="Enter password: " />
                         <Label layoutX="60.0" layoutY="248.0" text="Re-enter password: " />
-                        <TextField layoutX="207.0" layoutY="209.0" />
-                        <TextField layoutX="207.0" layoutY="243.0" />
-                        <Button layoutX="496.0" layoutY="257.0" mnemonicParsing="false" text="Encrypt" />
+                        <TextField fx:id="passField" layoutX="207.0" layoutY="209.0" />
+                        <TextField fx:id="repassField" layoutX="207.0" layoutY="243.0" />
+                        <Button fx:id="doBtn" layoutX="496.0" layoutY="257.0" mnemonicParsing="false" onAction="#actionFile" text="Encrypt" />
+                        <Button fx:id="fileBrowse" layoutX="258.0" layoutY="80.0" mnemonicParsing="false" onAction="#fileOpen" text="Browse" />
+                        <Button fx:id="dirBrowse" layoutX="259.0" layoutY="144.0" mnemonicParsing="false" onAction="#directoryOpen" text="Browse" />
                      </children></AnchorPane>
             </content>
           </Tab>
