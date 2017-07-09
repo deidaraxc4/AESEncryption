@@ -101,7 +101,7 @@ public class SceneController implements Initializable{
 		if(modeSelection.equals("Encrypt")) {
 			inputFile = new File(fileField.getText());
 			selectedDirectory = new File(directoryField.getText());
-			outputFile = new File(inputFile.getName()+".encrypted");
+			outputFile = new File(selectedDirectory+"/"+inputFile.getName()+".encrypted");
 			//Check if password match
 			if(passField.getText().equals(repassField.getText())) {
 				isEqual = true;
@@ -115,7 +115,7 @@ public class SceneController implements Initializable{
 			selectedDirectory = new File(directoryField.getText());
 			String [] parts = inputFile.getName().split("\\.encrypte");
 			String decrypted = parts [0];
-			outputFile = new File(decrypted);
+			outputFile = new File(selectedDirectory+"/"+decrypted);
 			//Check if password match
 			if(passField.getText().equals(repassField.getText())) {
 				isEqual = true;
